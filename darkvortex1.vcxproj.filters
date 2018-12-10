@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="doc">
+      <UniqueIdentifier>{6343f800-fb9c-40e9-b1f7-f4b3cfbaf603}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="layers">
+      <UniqueIdentifier>{b44886c6-2dc6-4e4b-ad18-a95017e0f402}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="math">
+      <UniqueIdentifier>{6a1075ca-48bf-487e-a3e4-ce666db59b3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{552ff6b8-7143-456e-9747-5f0a035098c1}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="darkvortex.h" />
+    <ClInclude Include="layer.h" />
+    <ClInclude Include="network.h" />
+    <ClInclude Include="optimizer.h" />
+    <ClInclude Include="tensor.h" />
+    <ClInclude Include="utils\activation.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\common.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\shape.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="math\blas.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="math\gemm.h">
+      <Filter>math</Filter>
+    </ClInclude>
+    <ClInclude Include="layers\activation_layer.h">
+      <Filter>layers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="utils\activation.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="doc\alexnet.model">
+      <Filter>doc</Filter>
+    </None>
+    <None Include="doc\readme.md">
+      <Filter>doc</Filter>
+    </None>
+  </ItemGroup>
+</Project>

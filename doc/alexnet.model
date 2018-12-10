@@ -1,0 +1,48 @@
+[net]
+
+[data]
+name = data
+output = data, label
+crop = 224, 224
+mean = 127
+var = 127
+
+[conv]
+name = 'conv1'
+input = data
+output = conv1
+
+filters = 96
+size = 11
+stride = 4
+padding = 0
+
+activation = relu
+
+[maxpool]
+name = 'pool1'
+input = conv1
+output = pool1
+
+size = 3
+stride = 2
+padding = 0
+
+[conv]
+
+input = pool1
+output = conv2
+activation = relu
+
+filters = 256
+size = 3
+
+
+[maxpool]
+input = conv2
+output = pool2
+size = 3
+stride = 2
+padding = 0
+
+
