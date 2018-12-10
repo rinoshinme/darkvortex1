@@ -3,6 +3,7 @@
 
 #include "../layer.h"
 #include "../utils/activation.h"
+#include <string>
 
 class ActivationLayer : public Layer
 {
