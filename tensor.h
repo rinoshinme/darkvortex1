@@ -1,7 +1,7 @@
 #ifndef DARKVORTEX_TENSOR_H
 #define DARKVORTEX_TENSOR_H
 
-#include "utils\shape.h"
+#include "utils/shape.h"
 #include <cassert>
 
 template<typename T>
