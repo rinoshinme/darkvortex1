@@ -3,6 +3,7 @@
 
 #include "tensor.h"
 #include <vector>
+#include "utils/common.h"
 
 class Layer
 {
@@ -19,7 +20,7 @@ protected:
 	std::vector<float> loss_weights;
 
 public:
-	Layer(std::vector<std::string>& config);
+	Layer(const LayerParam& config);
 	~Layer();
 
 	virtual void forward() = 0;

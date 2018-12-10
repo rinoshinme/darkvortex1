@@ -12,7 +12,7 @@ private:
 	Activation* activation;
 
 public:
-	ActivationLayer();
+	ActivationLayer(const LayerParam& config);
 	~ActivationLayer();
 
 	void forward();
