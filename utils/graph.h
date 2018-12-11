@@ -8,23 +8,35 @@
 template<typename T>
 struct Node
 {
-	T val;
+	T val; // index in layer vector
 	std::list<Node*> in_nodes;
 	std::list<Node*> out_nodes;
 };
 
-template<typename T>
-class Graph
+class LayerGraph
 {
 private:
-	std::vector<Node*> nodes;
+	struct LayerInfo
+	{
+		std::string name;
+		std::vector<std::string> inputs;
+		std::vector<std::string> outputs;
+	};
+
+private:
+	std::vector<Node<int>*> nodes;
+	std::vector<LayerInfo> layer_info;
+
 public:
-	Graph(const std::vector<LayerParam>& layers);
+	LayerGraph(const std::vector<LayerParam>& layers);
 
 	// topology sorting nodes for backprop
-	std::vector<Node*> forwardList();
-	std::vector<Node*> backwardList();
-};
+	std::vector<int> forwardList();
+	std::vector<int> backwardList();
 
+private:
+	void parseLayerInfo(const std::vector<LayerParam>& layers);
+	void createLayerGraph();
+};
 
 #endif

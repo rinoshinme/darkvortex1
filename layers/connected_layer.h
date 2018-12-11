@@ -27,6 +27,7 @@ public:
 public:
 	int NumInputs() { return 1; }
 	int NumOutputs() { return 1; }
+
 };
 
 #endif

@@ -1,4 +1,6 @@
 #include "connected_layer.h"
+#include "../math/blas.h"
+#include "../math/gemm.h"
 
 bool ConnectedLayer::loadConfig(const LayerParam& config)
 {
@@ -23,21 +25,38 @@ void ConnectedLayer::reshape()
 	TensorShape shape(batch_size, num_outputs, 1, 1);
 	outputs[1] = new Tensor<float>(shape);
 
-	weights.resize(2);
-	// weight
-	weights[0] = new Tensor<float>(TensorShape(num_inputs, num_outputs));
-	// bias
-	weights[1] = new Tensor<float>(TensorShape(num_outputs));
+	if (with_bias)
+		weights.resize(2);
+	else
+		weights.resize(1);
+	weights[0] = new Tensor<float>(TensorShape(num_outputs, num_inputs));
+	if (with_bias)
+		weights[1] = new Tensor<float>(TensorShape(num_outputs));
 }
 
 void ConnectedLayer::forward()
 {
 	// use input and weight to calculate output
+	const_cpu(batch_size * num_outputs, 0, outputs[0]->dataPtr(), 1);
+	int m = batch_size;
+	int n = num_outputs;
+	int k = num_inputs;
+	float* a = inputs[0]->dataPtr();
+	float* b = weights[0]->dataPtr();
+	float* c = outputs[0]->dataPtr();
 
+	gemm(false, true, m, n, k, 1, a, k, b, k, 1, c, n);
+	if (with_bias)
+	{
+		float* bias = weights[1]->dataPtr();
+		for (int t = 0; t < batch_size; ++t)
+			axpy_cpu(num_outputs, 1, c + t * num_outputs, 1, bias, 1);
+	}
 }
 
 void ConnectedLayer::backward()
 {
+	// use output data and output delta to calculate input delta and weight grads
 
 }
 

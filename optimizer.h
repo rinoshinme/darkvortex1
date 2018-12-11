@@ -1,6 +1,8 @@
 #ifndef DARKVORTEX_OPTIMIZER_H
 #define DARKVORTEX_OPTIMIZER_H
 
+#include "utils/learning_rate_generator.h"
+
 enum class Phase
 {
 	Train,
@@ -18,6 +20,12 @@ class Network;
 
 class Optimizer
 {
+private:
+	float base_learning_rate;
+	LearningRatePolicy policy;
+	int max_iters;
+	int max_epoch;
+
 private:
 	// optimizer type
 	Network* network;

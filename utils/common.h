@@ -43,6 +43,7 @@ struct LayerParam
 
 struct UpdateParam
 {
+	float learning_rate;
 	float decay;
 	float moment;
 	// ...

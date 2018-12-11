@@ -4,6 +4,7 @@
 #include <vector>
 #include <string>
 #include "utils/common.h"
+#include "utils/parser.h"
 
 class Layer;
 
@@ -18,9 +19,9 @@ class Tensor;
 class Network
 {
 private:
+	Parser parser;
 	std::vector<Layer*> layers;
 	int batch_size;
-
 
 public:
 	Network(const std::string& model_file);

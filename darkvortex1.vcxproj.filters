@@ -56,6 +56,9 @@
     <ClInclude Include="utils\graph.h">
       <Filter>utils</Filter>
     </ClInclude>
+    <ClInclude Include="utils\learning_rate_generator.h">
+      <Filter>utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -78,6 +81,13 @@
     <ClCompile Include="layers\connected_layer.cpp">
       <Filter>layers</Filter>
     </ClCompile>
+    <ClCompile Include="math\gemm.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="math\blas.cpp">
+      <Filter>math</Filter>
+    </ClCompile>
+    <ClCompile Include="network.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="doc\alexnet.model">

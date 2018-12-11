@@ -16,8 +16,10 @@
 
 #include "utils/activation.h"
 #include "utils/common.h"
+#include "utils/graph.h"
 #include "utils/shape.h"
 #include "utils/parser.h"
 #include "utils/utils.h"
+#include "utils/learning_rate_generator.h"
 
 #endif
