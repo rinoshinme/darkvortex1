@@ -15,8 +15,8 @@ public:
 	ActivationLayer(const LayerParam& config);
 	~ActivationLayer();
 
-	void forward();
-	void backward();
+	void forward() {}
+	void backward() {}
 	// nothing to be done for activation layer
 	void update() {}
 

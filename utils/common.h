@@ -14,7 +14,18 @@ enum class LayerType
     MAXPOOL,
     SOFTMAX,
     CONVOLUTIONAL,
+	DROPOUT,
     BATCH_NORM,
+	UNKNOWN, // layer types not supported
+};
+
+std::string layer_type_to_string(LayerType type);
+LayerType string_to_layer_type(const std::string& name);
+
+struct ConfigParam
+{
+	std::string name;
+	std::map<std::string, std::string> props;
 };
 
 struct NetParam

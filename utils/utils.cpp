@@ -11,7 +11,7 @@ bool readLines(const std::string &file, std::vector<std::string>& lines)
     lines.clear();
     std::string line;
     std::getline(stream, line);
-    while (!line.empty())
+    while (!stream.eof())
     {
         lines.push_back(line);
         std::getline(stream, line);
@@ -53,9 +53,11 @@ std::vector<std::string> string_split(const std::string& line, char sep)
         if (line[index] == sep)
         {
             parts.push_back(line.substr(left, index - left));
-            left = index;
+            left = index + 1;
         }
         ++index;
     }
+	if (index > left)
+		parts.push_back(line.substr(left, index - left));
     return parts;
 }

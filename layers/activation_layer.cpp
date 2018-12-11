@@ -2,6 +2,6 @@
 
 ActivationLayer::ActivationLayer(const LayerParam& config)
 {
-    ActivationType type = config.type;
+    // ActivationType type = config.type;
     
 }

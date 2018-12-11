@@ -38,10 +38,28 @@
     <ClInclude Include="layers\activation_layer.h">
       <Filter>layers</Filter>
     </ClInclude>
+    <ClInclude Include="utils\parser.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="utils\utils.h">
+      <Filter>utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="utils\activation.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\parser.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\utils.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="layers\activation_layer.cpp">
+      <Filter>layers</Filter>
+    </ClCompile>
+    <ClCompile Include="utils\common.cpp">
       <Filter>utils</Filter>
     </ClCompile>
   </ItemGroup>

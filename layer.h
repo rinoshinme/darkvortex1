@@ -20,6 +20,7 @@ protected:
 	std::vector<float> loss_weights;
 
 public:
+	Layer() {}
 	Layer(const LayerParam& config);
 	~Layer();
 

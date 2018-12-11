@@ -88,6 +88,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>VORTEX_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -114,6 +115,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>VORTEX_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -132,11 +134,17 @@
     <ClInclude Include="tensor.h" />
     <ClInclude Include="utils\activation.h" />
     <ClInclude Include="utils\common.h" />
+    <ClInclude Include="utils\parser.h" />
     <ClInclude Include="utils\shape.h" />
+    <ClInclude Include="utils\utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="layers\activation_layer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="utils\activation.cpp" />
+    <ClCompile Include="utils\common.cpp" />
+    <ClCompile Include="utils\parser.cpp" />
+    <ClCompile Include="utils\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="doc\alexnet.model" />
