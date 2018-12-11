@@ -2,6 +2,7 @@
 #define DARKVORTEX_LEARNING_RATE_GENERATOR_H
 
 #include <vector>
+#include <cmath>
 
 enum LearningRatePolicy
 {

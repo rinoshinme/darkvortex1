@@ -1,7 +1,6 @@
 #include <iostream>
 #include "darkvortex.h"
 
-
 void test_parser()
 {
 	std::string model_file("F:/projects/darknet/cfg/alexnet.cfg");

@@ -17,7 +17,7 @@ public:
 	DataLayer(const LayerParam& config) {}
 	~DataLayer() {}
 
-	bool loadConfig(const LayerParam& config) {}
+    bool loadConfig(const LayerParam& config) { return true; }
 	void reshape() {}
 
 	void forward() {}

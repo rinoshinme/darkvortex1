@@ -6,6 +6,10 @@
 #include <string>
 #include "common.h"
 
+#ifndef _WIN32
+#define VORTEX_DEBUG
+#endif
+
 class Parser
 {
 public:
