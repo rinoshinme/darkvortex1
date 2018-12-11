@@ -10,10 +10,17 @@ class Layer;
 template<typename T>
 class Tensor;
 
+/*
+ * create layers and construct network structure,
+ * create network flow graph
+ */
+
 class Network
 {
 private:
 	std::vector<Layer*> layers;
+	int batch_size;
+
 
 public:
 	Network(const std::string& model_file);

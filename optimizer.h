@@ -1,8 +1,6 @@
 #ifndef DARKVORTEX_OPTIMIZER_H
 #define DARKVORTEX_OPTIMIZER_H
 
-
-
 enum class Phase
 {
 	Train,
@@ -14,7 +12,6 @@ enum class OptimizerType
 	SGD,
 	Momentum,
 	Adam,
-
 };
 
 class Network;

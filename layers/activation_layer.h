@@ -8,15 +8,18 @@
 class ActivationLayer : public Layer
 {
 private:
-	ActivationType type;
+	ActivationType activation_type;
 	Activation* activation;
 
 public:
-	ActivationLayer(const LayerParam& config);
-	~ActivationLayer();
+	ActivationLayer() {}
+	~ActivationLayer() {}
 
-	void forward() {}
-	void backward() {}
+	bool loadConfig(const LayerParam& config);
+	void reshape();
+
+	void forward();
+	void backward();
 	// nothing to be done for activation layer
 	void update() {}
 

@@ -7,10 +7,14 @@
 #include "optimizer.h"
 
 #include "layers/activation_layer.h"
+#include "layers/connected_layer.h"
+#include "layers/data_layer.h"
+#include "layers/image_folder_layer.h"
 
 #include "math/blas.h"
 #include "math/gemm.h"
 
+#include "utils/activation.h"
 #include "utils/common.h"
 #include "utils/shape.h"
 #include "utils/parser.h"

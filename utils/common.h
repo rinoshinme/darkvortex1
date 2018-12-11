@@ -10,6 +10,7 @@
 
 enum class LayerType
 {
+	ACTIVATION,
     CONNECTED,
     MAXPOOL,
     SOFTMAX,
@@ -35,8 +36,16 @@ struct NetParam
 
 struct LayerParam
 {
+	// each layer should have name, input, output 
     LayerType type;
     std::map<std::string, std::string> layer_props;
+};
+
+struct UpdateParam
+{
+	float decay;
+	float moment;
+	// ...
 };
 
 #endif

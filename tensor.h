@@ -15,12 +15,14 @@ private:
 	T* delta_gpu;
 #endif
 	TensorShape shape;
+	int sample_size;
 
 public:
 	Tensor(const std::vector<int>& shape)
 	{
 		TensorShape tshape(shape);
 		initWithShape(tshape);
+		sample_size = this->shape.c * this->shape.h * this->shape.w;
 	}
 
 	Tensor(const TensorShape& shape)
@@ -33,7 +35,14 @@ public:
 
 	TensorShape getShape() const { return shape; }
 	std::vector<int> getShapeVector() const { return shape.toVector(); }
-	int getCount() const { return shape.getCount(); }
+	int numElements() const { return shape.getCount(); }
+	const T* dataPtr(int num = 0) const { return data + num * sample_size; }
+	const T* deltaPtr(int num = 0) const { return delta + num * sample_size; }
+	T* dataPtr(int num = 0) { return data + num * sample_size; }
+	T* deltaPtr(int num = 0) { return delta + num * sample_size; }
+
+	// clear delta value for weight parameters
+	void zeroGrad();
 
 private:
 	void clearDataAndDelta()
@@ -53,9 +62,9 @@ private:
 		memset(data, 0, count * sizeof(T));
 		memset(delta, 0, count * sizeof(T));
 	}
-
 };
 
-
+typedef Tensor<float> Tensorf;
+typedef Tensor<double> Tensord;
 
 #endif

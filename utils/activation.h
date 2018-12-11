@@ -2,6 +2,7 @@
 #define DARKVORTEX_ACTIVATION_H
 
 #include <cmath>
+#include <string>
 
 enum class ActivationType
 {
@@ -11,7 +12,11 @@ enum class ActivationType
 	SIGMOID,
 	ELU,
 	LEAKY_RELU,
+	// UNKNOWN,
 };
+
+std::string activation_type_to_string(ActivationType type);
+ActivationType string_to_activation_type(const std::string& name);
 
 class Activation
 {
@@ -60,8 +65,8 @@ class SigmoidActivation : public Activation
 public:
 	SigmoidActivation() : Activation(ActivationType::SIGMOID) {}
 	
-	float activate(float x) { return 1.0f / (1 + exp(-x)); }
-	float gradient(float y) { return y * (1 - y); }
+	float activate(float x) const { return 1.0f / (1 + exp(-x)); }
+	float gradient(float y) const { return y * (1 - y); }
 };
 
 class ReluActivation : public Activation
@@ -69,8 +74,8 @@ class ReluActivation : public Activation
 public:
 	ReluActivation() : Activation(ActivationType::RELU) {}
 
-	float activate(float x) { return (x > 0) ? x : 0.0f; }
-	float gradient(float y) { return (y > 0) ? 1.0f : 0.0f; }
+	float activate(float x) const { return (x > 0) ? x : 0.0f; }
+	float gradient(float y) const { return (y > 0) ? 1.0f : 0.0f; }
 };
 
 class EluActivation : public Activation
@@ -78,8 +83,8 @@ class EluActivation : public Activation
 public:
 	EluActivation() : Activation(ActivationType::ELU) {}
 
-	float activate(float x) { return (x > 0) ? x : exp(x) - 1; }
-	float gradient(float y) { return (y > 0) ? 1.0f : (y + 1); }
+	float activate(float x) const { return (x > 0) ? x : exp(x) - 1; }
+	float gradient(float y) const { return (y > 0) ? 1.0f : (y + 1); }
 };
 
 class LeakyReluActivation : public Activation
@@ -93,8 +98,8 @@ public:
 		alpha = a;
 	}
 
-	float activate(float x) { return (x > 0) ? x : alpha * x; }
-	float gradient(float y) { return (y > 0) ? 1.0f : alpha; }
+	float activate(float x) const { return (x > 0) ? x : alpha * x; }
+	float gradient(float y) const { return (y > 0) ? 1.0f : alpha; }
 };
 
 #endif

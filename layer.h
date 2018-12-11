@@ -4,6 +4,7 @@
 #include "tensor.h"
 #include <vector>
 #include "utils/common.h"
+#include "utils/utils.h"
 
 class Layer
 {
@@ -12,24 +13,37 @@ protected:
 	std::vector<Tensor<float>*> outputs;
 	std::vector<Tensor<float>*> truths;
 	
-	std::vector<Tensor<float>*> layer_params;
+	std::vector<Tensor<float>*> weights; // weight and bias
+
 	std::vector<int> learnable_param_index;
 
 	bool freeze; // all parameters are not learnable when freeze is true
 	std::vector<float> losses;
 	std::vector<float> loss_weights;
+	LayerType layer_type;
 
 public:
-	Layer() {}
-	Layer(const LayerParam& config);
+	Layer();
+	// Layer(const LayerParam& config);
 	~Layer();
+
+	virtual bool loadConfig(const LayerParam& config) = 0;
+	virtual void reshape() = 0;
+	virtual void checkShape() {}
 
 	virtual void forward() = 0;
 	virtual void backward() = 0;
-	virtual void update() = 0;
+
+	// no operation for default layers, like activation layer
+	virtual void update(const UpdateParam& update_param) {}
 
 	virtual int numInputs() { return -1; }
 	virtual int numOutputs() { return -1; }
+	// create output tensors from input tensors
+
+	virtual void loadWeight(FILE* fp) {}
+	virtual void saveWeight(FILE* fp) {}
+	
 
 };
 

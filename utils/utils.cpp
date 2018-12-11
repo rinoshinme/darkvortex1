@@ -61,3 +61,58 @@ std::vector<std::string> string_split(const std::string& line, char sep)
 		parts.push_back(line.substr(left, index - left));
     return parts;
 }
+
+std::string option_find_str(const OptionMap& op_map, const std::string& key)
+{
+	OptionMap::const_iterator it;
+	it = op_map.find(key);
+	if (it != op_map.cend())
+		return it->second;
+	return "";
+}
+
+int option_find_int(const OptionMap& op_map, const std::string& key)
+{
+	OptionMap::const_iterator it;
+	it = op_map.find(key);
+	if (it != op_map.cend())
+		return atoi(it->second.c_str());
+	return 0;
+}
+
+float option_find_float(const OptionMap& op_map, const std::string& key)
+{
+	OptionMap::const_iterator it;
+	it = op_map.find(key);
+	if (it != op_map.cend())
+		return (float)atof(it->second.c_str());
+	return 0.0f;
+}
+
+std::string option_find_str1(const OptionMap& op_map, const std::string& key, const std::string& def_value)
+{
+	OptionMap::const_iterator it;
+	it = op_map.find(key);
+	if (it != op_map.cend())
+		return it->second;
+	return def_value;
+}
+
+int option_find_int1(const OptionMap& op_map, const std::string& key, int def_value)
+{
+	OptionMap::const_iterator it;
+	it = op_map.find(key);
+	if (it != op_map.cend())
+		return atoi(it->second.c_str());
+	return def_value;
+}
+
+float option_find_float1(const OptionMap& op_map, const std::string& key, float def_value)
+{
+	OptionMap::const_iterator it;
+	it = op_map.find(key);
+	if (it != op_map.cend())
+		return (float)atof(it->second.c_str());
+	return def_value;
+}
+

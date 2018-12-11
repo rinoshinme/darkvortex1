@@ -4,6 +4,8 @@ std::string layer_type_to_string(LayerType type)
 {
 	switch (type)
 	{
+	case LayerType::ACTIVATION:
+		return "activation";
 	case LayerType::BATCH_NORM:
 		return "batchnorm";
 	case LayerType::CONNECTED:
@@ -37,6 +39,8 @@ LayerType string_to_layer_type(const std::string& name)
 		return LayerType::SOFTMAX;
 	if (name == "dropout")
 		return LayerType::DROPOUT;
+	if (name == "activation")
+		return LayerType::ACTIVATION;
 	if (name == "unknown")
 		return LayerType::UNKNOWN;
 	
