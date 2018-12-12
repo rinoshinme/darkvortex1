@@ -44,6 +44,24 @@ struct TensorShape
 	{
 		return n * c * h * w;
 	}
+
+	int sampleSize() const
+	{
+		return c * h * w;
+	}
+
+	bool operator==(const TensorShape& shape)
+	{
+		if (this->n != shape.n)
+			return false;
+		if (this->c != shape.c)
+			return false;
+		if (this->h != shape.h)
+			return false;
+		if (this->w != shape.w)
+			return false;
+		return true;
+	}
 };
 
 #endif

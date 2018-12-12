@@ -3,25 +3,25 @@
 
 #include "../layer.h"
 
+// a sample data layer for generating vector data
 class DataLayer : public Layer
 {
 private:
+	// no parameters
 
 public:
 	DataLayer(const LayerParam& config) {}
 	virtual ~DataLayer() {}
 
     virtual bool loadConfig(const LayerParam& config) { return true; }
-	virtual void reshape() {}
+	virtual void reshape();
 
-	virtual void forward() {}
+	void checkInputSize();
+	void checkOutputSize();
+
+	virtual void forward();
 	virtual void backward() {}
-	// nothing to be done for activation layer
-	virtual void update() {}
-
-public:
-	int NumInputs() { return 1; }
-	int NumOutputs() { return 1; }
+	virtual void update(const UpdateParam& update_param) {}
 };
 
 #endif

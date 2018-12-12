@@ -22,7 +22,7 @@ public:
 	bool loadConfig(const LayerParam& config);
 	void reshape();
 	void checkInputSize();
-	void checkInputOutputSize();
+	void checkOutputSize();
 
 	Tensor<float>* getOutputTensor(int idx);
 

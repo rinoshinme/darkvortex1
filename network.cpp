@@ -41,6 +41,7 @@ void Network::buildNetwork()
 		default:
 			break;
 		}
+		layers[i]->setParentNetwork(this);
 	}
 
 	for (size_t i = 0; i < forward_list.size(); ++i)

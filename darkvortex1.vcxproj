@@ -88,10 +88,12 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>VORTEX_DEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>VORTEX_DEBUG;_CRT_SECURE_NO_WARNINGS;OPENCV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdparty\opencv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdparty\opencv\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -115,25 +117,30 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>VORTEX_DEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>VORTEX_DEBUG;_CRT_SECURE_NO_WARNINGS;OPENCV;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)3rdparty\opencv\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(SolutionDir)3rdparty\opencv\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="darkvortex.h" />
+    <ClInclude Include="dataset\mnist.h" />
     <ClInclude Include="layer.h" />
     <ClInclude Include="layers\activation_layer.h" />
     <ClInclude Include="layers\connected_layer.h" />
     <ClInclude Include="layers\data_layer.h" />
     <ClInclude Include="layers\image_data_layer.h" />
     <ClInclude Include="layers\image_folder_layer.h" />
+    <ClInclude Include="layers\softmax_layer.h" />
     <ClInclude Include="math\blas.h" />
     <ClInclude Include="math\gemm.h" />
     <ClInclude Include="network.h" />
+    <ClInclude Include="opencv_all.h" />
     <ClInclude Include="optimizer.h" />
     <ClInclude Include="tensor.h" />
     <ClInclude Include="utils\activation.h" />
@@ -141,13 +148,16 @@
     <ClInclude Include="utils\graph.h" />
     <ClInclude Include="utils\learning_rate_generator.h" />
     <ClInclude Include="utils\parser.h" />
+    <ClInclude Include="utils\random.h" />
     <ClInclude Include="utils\shape.h" />
     <ClInclude Include="utils\throw_assert.h" />
     <ClInclude Include="utils\utils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="dataset\mnist.cpp" />
     <ClCompile Include="layers\activation_layer.cpp" />
     <ClCompile Include="layers\connected_layer.cpp" />
+    <ClCompile Include="layers\data_layer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="math\blas.cpp" />
     <ClCompile Include="math\gemm.cpp" />

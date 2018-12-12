@@ -20,7 +20,7 @@ public:
 	bool loadConfig(const LayerParam& config);
 	void reshape();
 	void checkInputSize();
-	void checkInputOutputSize();
+	void checkOutputSize();
 
 	void forward();
 	void backward();

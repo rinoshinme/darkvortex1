@@ -6,10 +6,13 @@
 #include "utils/common.h"
 #include "utils/utils.h"
 #include "utils/throw_assert.h"
+#include "network.h"
 
 class Layer
 {
 protected:
+	Network* network;
+
 	LayerType layer_type;
 
 	std::vector<Tensor<float>*> inputs;
@@ -33,7 +36,9 @@ public:
 	virtual void reshape() = 0;
 	// check sizes
 	virtual void checkInputSize() = 0;
-	virtual void checkInputOutputSize() = 0;
+	virtual void checkOutputSize() = 0;
+
+	void setParentNetwork(Network* net) { network = net; }
 
 	// get input/output tensors for layer construction
 	virtual Tensor<float>* getInputTensor(int idx) { return inputs[idx]; }
@@ -41,7 +46,6 @@ public:
 
 	virtual void forward() = 0;
 	virtual void backward() = 0;
-
 	// no operation for default layers, like activation layer
 	virtual void update(const UpdateParam& update_param) = 0;
 

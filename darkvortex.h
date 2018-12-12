@@ -11,6 +11,7 @@
 #include "layers/data_layer.h"
 #include "layers/image_data_layer.h"
 #include "layers/image_folder_layer.h"
+#include "layers/softmax_layer.h"
 
 #include "math/blas.h"
 #include "math/gemm.h"
@@ -23,5 +24,8 @@
 #include "utils/utils.h"
 #include "utils/learning_rate_generator.h"
 #include "utils/throw_assert.h"
+#include "utils/random.h"
+
+#include "dataset/mnist.h"
 
 #endif

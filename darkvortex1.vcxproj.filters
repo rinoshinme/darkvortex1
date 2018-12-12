@@ -13,6 +13,9 @@
     <Filter Include="utils">
       <UniqueIdentifier>{552ff6b8-7143-456e-9747-5f0a035098c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="dataset">
+      <UniqueIdentifier>{1bf19002-0048-4bc7-833c-51c30e2102d8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="darkvortex.h" />
@@ -65,6 +68,16 @@
     <ClInclude Include="layers\image_data_layer.h">
       <Filter>layers</Filter>
     </ClInclude>
+    <ClInclude Include="utils\random.h">
+      <Filter>utils</Filter>
+    </ClInclude>
+    <ClInclude Include="dataset\mnist.h">
+      <Filter>dataset</Filter>
+    </ClInclude>
+    <ClInclude Include="layers\softmax_layer.h">
+      <Filter>layers</Filter>
+    </ClInclude>
+    <ClInclude Include="opencv_all.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -95,6 +108,12 @@
     <ClCompile Include="network.cpp" />
     <ClCompile Include="utils\graph.cpp">
       <Filter>utils</Filter>
+    </ClCompile>
+    <ClCompile Include="layers\data_layer.cpp">
+      <Filter>layers</Filter>
+    </ClCompile>
+    <ClCompile Include="dataset\mnist.cpp">
+      <Filter>dataset</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

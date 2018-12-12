@@ -23,6 +23,11 @@ private:
 	std::vector<int> backward_list;
 	
 	int batch_size;
+
+#ifdef GPU
+	int gpu_index;
+#endif
+
 public:
 	Network(const std::string& model_file);
 	~Network();
@@ -38,6 +43,7 @@ public:
 	// get all params
 	std::vector<Tensor<float>*> getParams();
 	std::vector<Tensor<float>*> getLearnableParams();
+	int getBatchSize() const { return batch_size; }
 
 private:
 };

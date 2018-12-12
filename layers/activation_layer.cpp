@@ -37,12 +37,12 @@ void ActivationLayer::reshape()
 
 void ActivationLayer::checkInputSize()
 {
-	throw_assert(numInputs() == 1, "Activation should have 1 input");
+	throw_assert(numInputs() == 1, "Activation should have 1 input tensor");
 }
 
-void ActivationLayer::checkInputOutputSize()
+void ActivationLayer::checkOutputSize()
 {
-	throw_assert(numInputs() == 1 && numOutputs() == 1, "Activation layers should have 1 input tensor and 1 output tensor");
+	throw_assert(numOutputs() == 1, "Activation layers should have 1 output tensor");
 }
 
 void ActivationLayer::forward()

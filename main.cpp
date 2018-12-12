@@ -44,12 +44,34 @@ void test_network_parser()
 	for (size_t k = 0; k < backward_list.size(); ++k)
 		std::cout << backward_list[k] << "->";
 	std::cout << std::endl;
+}
 
+void test_list_dir()
+{
+	std::string mnist_dir("F:/projects/data/mnist");
+	std::vector<std::string> files = list_dir(mnist_dir, ListDirType::FILE_ONLY);
+	if (files.size() == 0)
+	{
+		std::cout << "no files in directory\n";
+		return;
+	}
+	for (size_t k = 0; k < files.size(); ++k)
+	{
+		std::cout << files[k] << std::endl;
+	}
+}
+
+void test_mnist()
+{
+	std::string mnist_dir("F:/projects/data/mnist");
+	Mnist mnist(mnist_dir);
 }
 
 int main()
 {
-	test_network_parser();
+	// test_network_parser();
+	test_mnist();
+	// test_list_dir();
 
 	std::cout << "finished...\n";
 

@@ -60,12 +60,12 @@ void ConnectedLayer::reshape()
 
 void ConnectedLayer::checkInputSize()
 {
-	throw_assert((numInputs() == 1), "Connected layer should have 1 input");
+	throw_assert((numInputs() == 1), "Connected layer should have 1 input tensor");
 }
 
-void ConnectedLayer::checkInputOutputSize()
+void ConnectedLayer::checkOutputSize()
 {
-	throw_assert((numInputs() == 1 && numOutputs() == 1), "Connected layer should have 1 input and 1 output");
+	throw_assert(numOutputs() == 1, "Connected layer should have 1 output tensor");
 }
 
 Tensor<float>* ConnectedLayer::getOutputTensor(int idx)
