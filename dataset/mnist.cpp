@@ -14,15 +14,14 @@ Mnist::Mnist(const std::string& mnist_dir)
 	};
 
 	// scan folder and find 4 mnist files
-	std::vector<std::string> files = list_dir(mnist_dir, ListDirType::FILE_ONLY);
+    std::vector<std::string> files = list_dir(mnist_dir, ListDirType::FILE_ONLY);
+    for (int i = 0; i < 4; ++i)
+        throw_assert(in_vector(mnist_files[i], files), "");
 	for (size_t i = 0; i < files.size(); ++i)
 	{
 		if (string_ends_with(files[i], ".gz"))
 			throw_assert(false, ".gz files should be uncompressed!");
 	}
-
-	for (int i = 0; i < 4; ++i)
-		throw_assert(in_vector(mnist_files[i], files), "");
 
 	std::cout << "reading data from mnist files\n";
 	readImageFile(path_join(mnist_dir, mnist_files[0]), x_train);

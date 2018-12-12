@@ -258,10 +258,11 @@ bool is_file(const std::string& path)
 
 std::vector<std::string> list_dir(const std::string& dir, ListDirType type)
 {
+    std::vector<std::string> files;
 	if (!is_dir(dir))
-		return false;
+		return files;
 
-	return false;
+	return files;
 }
 
 

@@ -114,7 +114,7 @@ private:
 			delete[] delta;
 	}
 
-	void initWithShape(const TensorShape& shape, bool with_delta = True)
+	void initWithShape(const TensorShape& shape, bool with_delta = true)
 	{
 		this->with_delta = with_delta;
 		this->shape = shape;
