@@ -7,6 +7,7 @@
 #include "common.h"
 
 #ifndef _WIN32
+// for MAC OS and LINUX
 #define VORTEX_DEBUG
 #endif
 

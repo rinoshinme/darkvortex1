@@ -23,10 +23,33 @@ void test_string_split()
 	}
 }
 
+void test_network_parser()
+{
+	std::string model_file("F:/projects/darkvortex1/prj/darkvortex1/doc/fcnet.model");
+	Parser parser;
+	bool ret = parser.parseModel(model_file);
+	if (!ret)
+		std::cout << "parse failed\n";
+	parser.showNetParam();
+	std::cout << "---------------------------------------\n";
+	parser.showLayerParams();
+
+	LayerGraph graph;
+	graph.loadLayers(parser.layer_params);
+	std::vector<int> forward_list = graph.forwardList();
+	for (size_t k = 0; k < forward_list.size(); ++k)
+		std::cout << forward_list[k] << "->";
+	std::cout << std::endl;
+	std::vector<int> backward_list = graph.backwardList();
+	for (size_t k = 0; k < backward_list.size(); ++k)
+		std::cout << backward_list[k] << "->";
+	std::cout << std::endl;
+
+}
+
 int main()
 {
-	test_parser();
-	// test_string_split();
+	test_network_parser();
 
 	std::cout << "finished...\n";
 

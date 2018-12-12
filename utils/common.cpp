@@ -4,6 +4,8 @@ std::string layer_type_to_string(LayerType type)
 {
 	switch (type)
 	{
+	case LayerType::DATA:
+		return "data";
 	case LayerType::ACTIVATION:
 		return "activation";
 	case LayerType::BATCH_NORM:
@@ -27,6 +29,8 @@ std::string layer_type_to_string(LayerType type)
 
 LayerType string_to_layer_type(const std::string& name)
 {
+	if (name == "data")
+		return LayerType::DATA;
 	if (name == "batchnorm")
 		return LayerType::BATCH_NORM;
 	if (name == "connected")

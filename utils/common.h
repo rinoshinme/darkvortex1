@@ -10,6 +10,7 @@
 
 enum class LayerType
 {
+	DATA,
 	ACTIVATION,
     CONNECTED,
     MAXPOOL,

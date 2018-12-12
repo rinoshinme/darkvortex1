@@ -1,8 +1,9 @@
 # a simple deep learning framework for single gpu training and testing
 
 1. IO
-1.1. model definition
+1.1. model and optimizer definition
 	-- see alexnet.model
+	-- see alexnet.optim
 
 1.2. weight io
 	-- save weights as binary files

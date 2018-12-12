@@ -59,6 +59,9 @@
     <ClInclude Include="utils\learning_rate_generator.h">
       <Filter>utils</Filter>
     </ClInclude>
+    <ClInclude Include="utils\throw_assert.h">
+      <Filter>utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -88,12 +91,21 @@
       <Filter>math</Filter>
     </ClCompile>
     <ClCompile Include="network.cpp" />
+    <ClCompile Include="utils\graph.cpp">
+      <Filter>utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="doc\alexnet.model">
       <Filter>doc</Filter>
     </None>
     <None Include="doc\readme.md">
+      <Filter>doc</Filter>
+    </None>
+    <None Include="doc\alexnet.optim">
+      <Filter>doc</Filter>
+    </None>
+    <None Include="doc\fcnet.model">
       <Filter>doc</Filter>
     </None>
   </ItemGroup>

@@ -88,7 +88,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>VORTEX_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>VORTEX_DEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -115,7 +115,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>VORTEX_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>VORTEX_DEBUG;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -141,6 +141,7 @@
     <ClInclude Include="utils\learning_rate_generator.h" />
     <ClInclude Include="utils\parser.h" />
     <ClInclude Include="utils\shape.h" />
+    <ClInclude Include="utils\throw_assert.h" />
     <ClInclude Include="utils\utils.h" />
   </ItemGroup>
   <ItemGroup>
@@ -153,11 +154,14 @@
     <ClCompile Include="network.cpp" />
     <ClCompile Include="utils\activation.cpp" />
     <ClCompile Include="utils\common.cpp" />
+    <ClCompile Include="utils\graph.cpp" />
     <ClCompile Include="utils\parser.cpp" />
     <ClCompile Include="utils\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="doc\alexnet.model" />
+    <None Include="doc\alexnet.optim" />
+    <None Include="doc\fcnet.model" />
     <None Include="doc\readme.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

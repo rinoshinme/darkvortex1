@@ -4,13 +4,17 @@
 #include "common.h"
 #include <vector>
 #include <list>
+#include <utility>
 
 template<typename T>
 struct Node
 {
 	T val; // index in layer vector
-	std::list<Node*> in_nodes;
-	std::list<Node*> out_nodes;
+	// std::list<Node*> in_nodes;
+	std::vector<std::pair<int, int> > in_nodes; // layer index, tensor index
+	// std::list<Node*> out_nodes;
+	std::vector<std::pair<int, int> > out_nodes; // layer index, tensor index
+	Node(int id) { val = id; }
 };
 
 class LayerGraph
@@ -25,12 +29,16 @@ private:
 
 private:
 	std::vector<Node<int>*> nodes;
+	// intermediate values
 	std::vector<LayerInfo> layer_info;
 
 public:
-	LayerGraph(const std::vector<LayerParam>& layers);
+	LayerGraph() {}
+	void loadLayers(const std::vector<LayerParam>& layers);
+	// LayerGraph(const std::vector<LayerParam>& layers);
 
 	// topology sorting nodes for backprop
+	// the output may pose some randomness
 	std::vector<int> forwardList();
 	std::vector<int> backwardList();
 

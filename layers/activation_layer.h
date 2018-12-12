@@ -5,6 +5,8 @@
 #include "../utils/activation.h"
 #include <string>
 
+/* ActivationLayer may be contained in a computational layer, 
+such as ConnectedLayer or Convolutional Layer */
 class ActivationLayer : public Layer
 {
 private:

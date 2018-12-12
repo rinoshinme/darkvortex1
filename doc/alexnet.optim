@@ -1,0 +1,8 @@
+[optimizer]
+learning_rate = 0.0001
+policy = step
+step = 1000
+# steps array for policy = steps
+momentum = 0.95
+weight_decay = 0.5
+

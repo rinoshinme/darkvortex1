@@ -1,0 +1,38 @@
+[net]
+batch = 1
+
+[data]
+name = data
+# use MNIST data as sample
+# data: 384x1x1
+# label: 10x1x1
+output = data, label
+
+[connected]
+name = conn1
+input = data
+output = conn1
+
+size = 1000
+activation = relu
+
+[connected]
+name = conn2
+input = conn1
+output = conn2
+
+size = 300
+activation = relu
+
+[connected]
+name = conn3
+input = conn2
+output = conn3
+
+size = 10
+activation = linear
+
+[softmax]
+name = softmax
+input = conn3, label
+

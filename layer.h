@@ -13,6 +13,7 @@ protected:
 	std::vector<Tensor<float>*> outputs;
 	std::vector<Tensor<float>*> truths;
 	
+	bool has_weight;
 	std::vector<Tensor<float>*> weights; // weight and bias
 
 	std::vector<int> learnable_param_index;

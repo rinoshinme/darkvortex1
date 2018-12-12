@@ -1,25 +1,22 @@
 [net]
+# batch size
 batch=1
-height=227
-width=227
-channels=3
-momentum=0.9
-decay=0.0005
-max_crop=256
 
-[data]
+[image_folder]
 name=image_data
 output = data, label
+one_hot = true
+# image preprocessing
 crop = 224, 224
 mean = 127
 var = 127
+# image enhancement
 hue=.1
 saturation=0.75
 exposure=0.75
 
-
-[conv]
-name = 'conv1'
+[convolution]
+name = conv1
 input = data
 output = conv1
 
@@ -27,11 +24,10 @@ filters = 96
 size = 11
 stride = 4
 padding = 0
-
 activation = relu
 
 [maxpool]
-name = 'pool1'
+name = pool1
 input = conv1
 output = pool1
 
@@ -39,21 +35,100 @@ size = 3
 stride = 2
 padding = 0
 
-[conv]
-
+[convolution]
+name = conv2
 input = pool1
 output = conv2
 activation = relu
 
 filters = 256
-size = 3
-
+size = 5
+stride = 1
+padding = 1
+activation = relu
 
 [maxpool]
+name = pool2
 input = conv2
 output = pool2
+
 size = 3
 stride = 2
 padding = 0
 
+[convolution]
+name = conv3
+input = pool2
+output = conv3
 
+filters = 384
+size = 3
+stride = 1
+pad = 1
+activation = relu
+
+[convolution]
+name = conv4
+input = conv3
+output = conv4
+
+filters = 384
+size = 3
+stride = 1
+pad = 1
+activation = relu
+
+[convolution]
+name = conv5
+input = conv4
+output = conv5
+
+filters = 256
+size = 3
+stride = 1
+pad = 1
+activation = relu
+
+[maxpool]
+name = pool3
+input = conv5
+output = pool3
+
+size = 3
+stride = 2
+padding = 0
+
+[reshape]
+name = reshape1
+input = pool3
+output = reshape1
+# size of the reshaped tensor
+# excluding batchsize
+size = 256, 1, 1
+
+[connected]
+name = conn1
+input = reshape1
+output = conn1
+
+size = 4096
+activation = relu
+
+[connected]
+name = conn2
+input = conn1
+output = conn2
+
+size = 4096
+
+[connected]
+name = conn3
+input = conn2
+output = conn3
+
+size = 1000
+activation = linear
+
+[softmax]
+name = softmax
+input = conn3, label

@@ -21,5 +21,6 @@
 #include "utils/parser.h"
 #include "utils/utils.h"
 #include "utils/learning_rate_generator.h"
+#include "utils/throw_assert.h"
 
 #endif
