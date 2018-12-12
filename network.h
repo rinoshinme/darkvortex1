@@ -12,11 +12,6 @@ class Layer;
 template<typename T>
 class Tensor;
 
-/*
- * create layers and construct network structure,
- * create network flow graph
- */
-
 class Network
 {
 private:

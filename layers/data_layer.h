@@ -6,24 +6,18 @@
 class DataLayer : public Layer
 {
 private:
-	// image enhancement params
-	float angle;
-	float hue;
-	float saturation;
-	float exposure;
-	float aspect;
 
 public:
 	DataLayer(const LayerParam& config) {}
-	~DataLayer() {}
+	virtual ~DataLayer() {}
 
-    bool loadConfig(const LayerParam& config) { return true; }
-	void reshape() {}
+    virtual bool loadConfig(const LayerParam& config) { return true; }
+	virtual void reshape() {}
 
-	void forward() {}
-	void backward() {}
+	virtual void forward() {}
+	virtual void backward() {}
 	// nothing to be done for activation layer
-	void update() {}
+	virtual void update() {}
 
 public:
 	int NumInputs() { return 1; }

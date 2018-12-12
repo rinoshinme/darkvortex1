@@ -42,6 +42,8 @@ public:
 	std::vector<int> forwardList();
 	std::vector<int> backwardList();
 
+	Node<int>* getLayerNode(int index) { return nodes[index]; }
+
 private:
 	void parseLayerInfo(const std::vector<LayerParam>& layers);
 	void createLayerGraph();

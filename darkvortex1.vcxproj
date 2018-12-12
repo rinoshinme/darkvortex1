@@ -129,6 +129,7 @@
     <ClInclude Include="layers\activation_layer.h" />
     <ClInclude Include="layers\connected_layer.h" />
     <ClInclude Include="layers\data_layer.h" />
+    <ClInclude Include="layers\image_data_layer.h" />
     <ClInclude Include="layers\image_folder_layer.h" />
     <ClInclude Include="math\blas.h" />
     <ClInclude Include="math\gemm.h" />
@@ -145,7 +146,6 @@
     <ClInclude Include="utils\utils.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="layer.cpp" />
     <ClCompile Include="layers\activation_layer.cpp" />
     <ClCompile Include="layers\connected_layer.cpp" />
     <ClCompile Include="main.cpp" />

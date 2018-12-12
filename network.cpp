@@ -43,11 +43,16 @@ void Network::buildNetwork()
 		}
 	}
 
-	for (size_t i = 0; i < layers.size(); ++i)
+	for (size_t i = 0; i < forward_list.size(); ++i)
 	{
-		// construct input tensors for current layer
-		// layers are adjusted in forward_list order
-
+		Node<int>* node = layer_graph.getLayerNode(forward_list[i]);
+		std::vector<std::pair<int, int> > input_nodes = node->in_nodes;
+		for (size_t k = 0; k < input_nodes.size(); ++k)
+		{
+			int layer_idx = input_nodes[k].first;
+			int tensor_idx = input_nodes[k].second;
+			layers[i]->addInput(layers[layer_idx]->getOutputTensor(tensor_idx));
+		}
 
 		// reshape layer output size and weight size
 		layers[i]->reshape();

@@ -25,6 +25,7 @@ bool ActivationLayer::loadConfig(const LayerParam& config)
 
 void ActivationLayer::reshape()
 {
+	checkInputSize();
 	size_t numInput = inputs.size();
 	outputs.resize(numInput);
 	for (int i = 0; i < numInput; ++i)
@@ -32,6 +33,16 @@ void ActivationLayer::reshape()
 		TensorShape shape = inputs[i]->getShape();
 		outputs[i] = new Tensor<float>(shape);
 	}
+}
+
+void ActivationLayer::checkInputSize()
+{
+	throw_assert(numInputs() == 1, "Activation should have 1 input");
+}
+
+void ActivationLayer::checkInputOutputSize()
+{
+	throw_assert(numInputs() == 1 && numOutputs() == 1, "Activation layers should have 1 input tensor and 1 output tensor");
 }
 
 void ActivationLayer::forward()
@@ -48,4 +59,9 @@ void ActivationLayer::backward()
 	{
 		this->activation->gradient_array(outputs[i]->dataPtr(), outputs[i]->numElements(), inputs[i]->deltaPtr());
 	}
+}
+
+void ActivationLayer::update(const UpdateParam& update_param)
+{
+	// do nothing
 }

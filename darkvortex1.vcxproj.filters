@@ -62,6 +62,9 @@
     <ClInclude Include="utils\throw_assert.h">
       <Filter>utils</Filter>
     </ClInclude>
+    <ClInclude Include="layers\image_data_layer.h">
+      <Filter>layers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -80,7 +83,6 @@
     <ClCompile Include="utils\common.cpp">
       <Filter>utils</Filter>
     </ClCompile>
-    <ClCompile Include="layer.cpp" />
     <ClCompile Include="layers\connected_layer.cpp">
       <Filter>layers</Filter>
     </ClCompile>

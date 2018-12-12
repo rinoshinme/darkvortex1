@@ -9,6 +9,7 @@
 #include "layers/activation_layer.h"
 #include "layers/connected_layer.h"
 #include "layers/data_layer.h"
+#include "layers/image_data_layer.h"
 #include "layers/image_folder_layer.h"
 
 #include "math/blas.h"

@@ -11,6 +11,9 @@ private:
 	int num_inputs;
 	int num_outputs;
 
+	// optional activation layer
+	Layer* activation_layer;
+
 public:
 	ConnectedLayer() {}
 	~ConnectedLayer() {}
@@ -18,6 +21,10 @@ public:
 public:
 	bool loadConfig(const LayerParam& config);
 	void reshape();
+	void checkInputSize();
+	void checkInputOutputSize();
+
+	Tensor<float>* getOutputTensor(int idx);
 
 	void forward();
 	void backward();
@@ -27,7 +34,6 @@ public:
 public:
 	int NumInputs() { return 1; }
 	int NumOutputs() { return 1; }
-
 };
 
 #endif

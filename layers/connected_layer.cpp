@@ -1,6 +1,7 @@
 #include "connected_layer.h"
 #include "../math/blas.h"
 #include "../math/gemm.h"
+#include "activation_layer.h"
 
 bool ConnectedLayer::loadConfig(const LayerParam& config)
 {
@@ -15,6 +16,22 @@ bool ConnectedLayer::loadConfig(const LayerParam& config)
 	num_inputs = shape.c;
 	num_outputs = option_find_int(config.layer_props, "outputs");
 
+	std::string activation = option_find_str(config.layer_props, "activation");
+
+	// inlayer activation should be either linear, relu or sigmoid
+	// no parameters are given
+	if (activation == "relu" || activation == "linear" || activation == "sigmoid")
+	{
+		LayerParam param;
+		param.type = LayerType::ACTIVATION;
+		param.layer_props["activation"] = activation;
+		activation_layer = new ActivationLayer;
+		activation_layer->loadConfig(param);
+	}
+	else
+	{
+		activation_layer = NULL;
+	}
 	return true;
 }
 
@@ -32,6 +49,31 @@ void ConnectedLayer::reshape()
 	weights[0] = new Tensor<float>(TensorShape(num_outputs, num_inputs));
 	if (with_bias)
 		weights[1] = new Tensor<float>(TensorShape(num_outputs));
+
+	if (activation_layer != NULL)
+	{
+		// reshape activation layer
+		activation_layer->addInput(this->outputs[0]);
+		activation_layer->reshape();
+	}
+}
+
+void ConnectedLayer::checkInputSize()
+{
+	throw_assert((numInputs() == 1), "Connected layer should have 1 input");
+}
+
+void ConnectedLayer::checkInputOutputSize()
+{
+	throw_assert((numInputs() == 1 && numOutputs() == 1), "Connected layer should have 1 input and 1 output");
+}
+
+Tensor<float>* ConnectedLayer::getOutputTensor(int idx)
+{
+	if (activation_layer != NULL)
+		return activation_layer->getOutputTensor(idx);
+	else
+		return outputs[idx];
 }
 
 void ConnectedLayer::forward()
@@ -52,11 +94,18 @@ void ConnectedLayer::forward()
 		for (int t = 0; t < batch_size; ++t)
 			axpy_cpu(num_outputs, 1, c + t * num_outputs, 1, bias, 1);
 	}
+	
+	if (activation_layer)
+		activation_layer->forward();
 }
 
 void ConnectedLayer::backward()
 {
 	// use output data and output delta to calculate input delta and weight grads
+	if (activation_layer)
+		activation_layer->backward();
+
+	// do backprop for weight layer
 
 }
 

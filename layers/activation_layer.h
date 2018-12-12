@@ -19,15 +19,15 @@ public:
 
 	bool loadConfig(const LayerParam& config);
 	void reshape();
+	void checkInputSize();
+	void checkInputOutputSize();
 
 	void forward();
 	void backward();
 	// nothing to be done for activation layer
-	void update() {}
+	void update(const UpdateParam& update_param);
 
 public:
-	int NumInputs() { return 1; }
-	int NumOutputs() { return 1; }
 
 };
 
