@@ -16,8 +16,11 @@ public:
 	int num_train;
 	int num_test;
 
-	Mnist(const std::string& mnist_dir);
+	// Mnist(const std::string& mnist_dir);
+	Mnist();
+	void loadData(const std::string& mnist_dir);
 
+	// labels are represented as one-hot vector
 	void getBatchTrain(int offset, int batch_size, Tensor<float>& x, Tensor<float>& y);
 
 private:

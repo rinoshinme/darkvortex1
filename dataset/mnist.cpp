@@ -4,7 +4,13 @@
 #include "../utils/utils.h"
 #include "../utils/throw_assert.h"
 
-Mnist::Mnist(const std::string& mnist_dir)
+Mnist::Mnist()
+{
+	num_train = 0;
+	num_test = 0;
+}
+
+void Mnist::loadData(const std::string& mnist_dir)
 {
 	std::string mnist_files[] = {
 		"train-images.idx3-ubyte",
@@ -101,6 +107,9 @@ void Mnist::getBatchTrain(int offset, int batch_size, Tensor<float>& x, Tensor<f
 	TensorShape batch_x_shape(batch_size, 1, 28, 28);
 	TensorShape batch_y_shape(batch_size, 10, 1, 1);
 	int sample_size = batch_x_shape.sampleSize();
+	x.resize(batch_x_shape, false);
+	y.resize(batch_y_shape, false);
+
 	// copy x
 	for (int i = 0; i < batch_size; ++i)
 	{

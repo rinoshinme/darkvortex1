@@ -8,6 +8,13 @@
 #include <map>
 #include <string>
 
+enum class Phase
+{
+	Train,	// forward and backward
+	Val,	// forward, calculate loss
+	Test,	// forward, calculate only output
+};
+
 enum class LayerType
 {
 	DATA,

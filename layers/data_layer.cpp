@@ -1,15 +1,18 @@
 #include "data_layer.h"
 
+DataLayer::DataLayer(const LayerParam& config)
+{
+	std::string mnist_folder("F:/projects/data/mnist");
+	mnist.loadData(mnist_folder);
+	batch_size = 1;
+	offset = 0;
+}
+
 void DataLayer::reshape()
 {
 	outputs.resize(2);
-
-	// batchsize is only set explicitly at start. i.e. data layer
-	int batch_size = network->getBatchSize();
-	TensorShape xshape(batch_size, 384, 1, 1); // MNIST size
-	TensorShape yshape(batch_size, 10, 1, 1);
-	outputs[0] = new Tensor<float>(xshape);
-	outputs[1] = new Tensor<float>(yshape);
+	outputs[0] = &data_x;
+	outputs[1] = &data_y;
 }
 
 void DataLayer::checkInputSize()
@@ -24,5 +27,12 @@ void DataLayer::checkOutputSize()
 
 void DataLayer::forward()
 {
+	throw_assert(batch_size > 0, "batch size should be positive");
+	int num_train = mnist.num_train;
+	if (offset + batch_size > num_train)
+		offset = 0;
 
+	mnist.getBatchTrain(offset, batch_size, data_x, data_y);
+	offset += batch_size;
+	// tensor in outputs automatically updated.
 }

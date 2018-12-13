@@ -3,12 +3,6 @@
 
 #include "utils/learning_rate_generator.h"
 
-enum class Phase
-{
-	Train,
-	Test,
-};
-
 enum class OptimizerType
 {
 	SGD,

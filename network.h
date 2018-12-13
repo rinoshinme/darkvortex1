@@ -17,8 +17,8 @@ class Network
 private:
 	std::vector<Layer*> layers;
 
-	Parser parser;
-	LayerGraph layer_graph;
+	Parser parser; // parse configuration file
+	LayerGraph layer_graph;	// construct forward list and backward list
 	std::vector<int> forward_list;
 	std::vector<int> backward_list;
 	

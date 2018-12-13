@@ -3,6 +3,7 @@
 
 #include "utils/shape.h"
 #include "math/blas.h"
+#include "utils/throw_assert.h"
 #include <cassert>
 #include "opencv_all.h"
 
@@ -61,6 +62,11 @@ public:
 	T* deltaPtr(int num = 0) { return delta + num * sample_size; }
 	bool hasDelta() const { return with_delta; }
 
+	T& operator()(int n, int c = 0, int h = 0, int w = 0)
+	{
+		return data[index(n, c, h, w)];
+	}
+
 	void resize(TensorShape new_shape, bool with_delta = true)
 	{
 		if (shape == new_shape)
@@ -80,6 +86,18 @@ public:
 	{
 		TensorShape shape(n, c, h, w);
 		resize(shape, with_delta);
+	}
+
+	void reshape(TensorShape& new_shape)
+	{
+		throw_assert(shape.getCount() == new_shape.getCount(), "new_shape does not match with original shape");
+		shape = new_shape;
+	}
+
+	void reshape(int n, int c, int h, int w)
+	{
+		TensorShape new_shape(n, c, h, w);
+		reshape(new_shape);
 	}
 
 	// clear delta value for weight parameters
@@ -103,6 +121,11 @@ public:
 			memset(delta, 0, count * sizeof(T));
 		}
 		this->with_delta = true;
+	}
+
+	int index(int n, int c, int h, int w)
+	{
+		return w + shape.w *(h + shape.h * (c + shape.c * n));
 	}
 
 private:
@@ -146,10 +169,9 @@ private:
 		std::vector<cv::Mat> images;
 		int n = shape.n;
 		int sample_size = shape.sampleSize();
-		int sz[] = { shape.h, shape.w, shape.c };
 		for (int i = 0; i < n; ++i)
 		{
-			cv::Mat cube(3, sz, CV_32F);
+			cv::Mat cube(shape.h, shape.w, CV_32FC(shape.c));
 			
 			// copy data
 			float* mat_data = (float*)cube.data;
@@ -177,6 +199,10 @@ private:
 	Tensor(const Tensor<T>& t) {}
 	Tensor<T>& operator=(const Tensor<T>& t) {}
 };
+
+// arithmetic operations
+
+
 
 typedef Tensor<float> Tensorf;
 typedef Tensor<double> Tensord;

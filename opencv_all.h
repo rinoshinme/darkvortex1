@@ -17,4 +17,5 @@
 
 #endif /* _WIN32 */
 #endif /* OPENCV */
+
 #endif /* DARKVORTEX_OPENCV_ALL_H */

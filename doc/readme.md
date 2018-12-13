@@ -1,5 +1,9 @@
 # a simple deep learning framework for single gpu training and testing
 
+-- TODO --
+Learning more about backprop and write code.
+
+-- Content -- 
 1. IO
 1.1. model and optimizer definition
 	-- see alexnet.model

@@ -25,11 +25,13 @@ protected:
 	std::vector<int> learnable_param_index;
 
 public:
-	Layer() {}
+	Layer() { network = NULL; }
 	virtual ~Layer() { /* no operations are needed */ }
 
 	// load layer parameters
 	virtual bool loadConfig(const LayerParam& config) = 0;
+	// set inputs as outputs of previous layer
+	void setInputLayer(const Layer* layer) { inputs = layer->outputs; }
 	// add input tensor to layer input.
 	virtual void addInput(Tensor<float>* tensor) { inputs.push_back(tensor); }
 	// construct outputs and weights from input and layer params

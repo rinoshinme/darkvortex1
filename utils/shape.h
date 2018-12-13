@@ -1,6 +1,7 @@
 #ifndef DARKVORTEX_SHAPE_H
 #define DARKVORTEX_SHAPE_H
 
+#include <iostream>
 #include <vector>
 
 struct TensorShape
@@ -63,5 +64,11 @@ struct TensorShape
 		return true;
 	}
 };
+
+inline std::ostream& operator<<(std::ostream& os, const TensorShape& shape)
+{
+	os << "TensorShape(" << shape.n << "," << shape.c << "," << shape.h << "," << shape.w << ")";
+	return os;
+}
 
 #endif

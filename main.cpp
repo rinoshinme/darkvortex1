@@ -64,7 +64,34 @@ void test_list_dir()
 void test_mnist()
 {
 	std::string mnist_dir("F:/projects/data/mnist");
-	Mnist mnist(mnist_dir);
+	Mnist mnist;
+	mnist.loadData(mnist_dir);
+
+	Tensor<float> batch_x;
+	Tensor<float> batch_y;
+	int batch_size = 5;
+	mnist.getBatchTrain(0, batch_size, batch_x, batch_y);
+
+	// show labels
+	for (int i = 0; i < batch_size; ++i)
+	{
+		for (int j = 0; j < 10; ++j)
+			std::cout << batch_y(i, j) << " ";
+		std::cout << std::endl;
+	}
+
+	std::cout << batch_x.getShape() << std::endl;
+
+#ifdef OPENCV
+	// show images
+	std::vector<cv::Mat> images = batch_x.toCvMats(true);
+	for (size_t k = 0; k < images.size(); ++k)
+	{
+		std::cout << images[k].rows << ", " << images[k].cols << ", " << images[k].channels() << std::endl;
+		cv::imshow("image", images[k]);
+		cv::waitKey(0);
+	}
+#endif
 }
 
 int main()
